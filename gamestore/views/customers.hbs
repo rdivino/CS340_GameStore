@@ -1,0 +1,114 @@
+<!-- customers.hbs
+//     Citation for the following function:
+//     Date: 2/28/2024
+//     Copied from /OR/ Adapted from /OR/ Based on:
+//     Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<div class = "top">
+    <h1>Customers</h1>
+    <p>Browse Customers Information:</p>
+</div>
+<fieldset>
+{{!-- Create a table --}}
+<table id="customer-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.customer_id}}>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.password}}</td>
+            <td>{{this.phone}}</td>
+            <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_customer.js"></script>
+
+<form id="search-customer-html" method='GET' action='/customers'>
+        <label for="input-email">Search Customer: </label>
+        <input type="text" name="email" id="input-email-html-search">
+        
+        <p><input type="submit" value="Search">
+        <a href='/customers'><button>Reset</button></a>
+        </p>
+    </form>
+</fieldset>
+
+<!-- /views/customers.hbs -->
+<fieldset>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Customer Data</h2>
+<form id="add-customer-form-ajax">
+    
+    <label for="input-email">Email: </label>
+    <input type="email" 
+    name="input-email" id="input-email" 
+    size="20" maxlength="40"
+    required placeholder ="Email Address" 
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+
+    <label for="input-password">Password: </label>
+    <input type="text" name="input-password" id="input-password" required placeholder="Password">
+
+    <label for="input-phone">Phone: </label>
+    <input type="text" name="input-phone" id="input-phone" maxlength="16" placeholder ="Phone Number">
+
+    <p><input type="submit"></p>
+</form>
+</fieldset>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_customer.js"></script>
+<fieldset>
+<h2>Update Customer Data</h2>
+<form id="update-customer-form-ajax">
+
+     <label for="input-customer_id">Customer ID: </label>
+    <select name="input-customer_id" id="mySelect">
+        <option value="test">ID</option>
+        {{#each data}}
+        <option value="{{this.customer_id}}">{{this.customer_id}} ({{this.email}})</option>
+        {{/each}}
+    </select>
+
+
+    <p> <label for="input-email">Email:</label>
+        <input type="email"
+            name="input-email" id="input-email-update"
+            size="20" maxlength="40"
+            placeholder ="Email Address" 
+            pattern="[^ @]+@[^ @]+.[a-z]+" />
+    </p>
+
+    <p><label for="input-password">Password:</label>
+        <input type="text" name="input-password" id="input-password-update" required placeholder="Password">
+    </p>
+
+    <p> <label for= "input-phone" >Phone: </label>
+        <input type="text" name= "input-phone"id="input-phone-update" maxlength="16" placeholder ="Phone Number"/>
+    </p>
+
+    <p><input type="submit"> </p>
+
+</form>
+<script src="./js/update_customer.js"></script>

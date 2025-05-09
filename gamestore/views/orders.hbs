@@ -1,0 +1,78 @@
+<!-- orders.hbs
+//     Citation for the following function:
+//     Date: 2/28/2024
+//     Copied from /OR/ Adapted from /OR/ Based on:
+//     Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<div class = "top">
+    <h1>Orders</h1>
+    <p>Browse Order Information:</p>
+</div>
+<fieldset>
+{{!-- Create a table --}}
+<table id="order-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.order_id}}>
+            <td>{{this.order_id}}</td>
+            <td>{{this.customer_id}}</td>
+            <td>${{this.total}}</td>
+            <td><button onclick="deleteOrder({{this.order_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_order.js"></script>
+</fieldset>
+
+<!-- /views/orders.hbs -->
+<fieldset>
+{{!-- Form to add a record to the table  --}}
+<h2>Add Order Data</h2>
+<form id="add-order-form-ajax">
+
+    <label for="input-customer_id">Customer ID: </label>
+    <select name="input-customer_id" id="input-customer_id">
+        <option value="test">ID</option>
+        {{#each title}}
+        <option value="{{this.customer_id}}">{{this.customer_id}} ({{this.email}})</option>
+        {{/each}}
+        
+    </select>
+
+    <p><label for="input-total">Total($):</label>
+            <input type="number"
+                id="input-total"
+                name="input-total"
+                min="0"
+                value="0.00"
+                step="0.01"
+                required
+            />
+    </p>
+
+    <p><input type="submit"></p>
+</form>
+</fieldset>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_order.js"></script>

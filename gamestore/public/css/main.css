@@ -1,0 +1,218 @@
+/** Citation for the following function:
+    Date: 3/07/2022
+    Copied from /OR/ Adapted from /OR/ Based on:
+    Source URL: https://stackoverflow.com/questions/4575826/how-to-push-a-footer-to-the-bottom-of-page-when-content-is-short-or-missing
+
+**/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+
+:root {
+    --darkBlue:#171a21 ;
+    --lightBlue:#66c0f4  ; 
+    --darkishBlue: #1b2838;
+    --mutedBlue: #2a475e;
+    --mutedBlue2:#1b3547;
+    --white: #c7d5e0 ;
+    --custom-embellishment-name:;
+  }
+
+body {     
+  background-color:var(--mutedBlue); ;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color:var(--white);
+  font-family: 'Ubuntu', sans-serif; 
+  margin:0;
+  padding:0;
+  max-width:100%;
+  height: 100%;
+  width: 100%;
+}
+
+header {
+    background-color: var(--darkishBlue);
+    height: ;
+    width: ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+main {
+    background-color: var(--darkGreen);
+    padding:2%;
+    margin:15%;
+    margin-top: 0;
+    margin-bottom:2%;
+    border-color: var(--lightGreen);   
+}
+
+a {
+    text-decoration: none; 
+}
+
+nav{
+    padding: 10px;
+    /*display:inline-block;*/
+    width:auto;
+    text-align: center; 
+    background-color: var(--darkishBlue);
+}
+
+
+nav a{
+    text-decoration:none;
+    text-align:center;
+    font-weight: bold; ;
+    color: var(--white);
+    margin:1%;
+    padding:10px;
+}
+
+nav a:hover{
+text-decoration:none;
+background-color: var();
+color: white;
+border-bottom:solid thin white;
+
+}
+/* .home{
+    display:;
+    color: white;
+    background-color: var(--darkishBlue);
+    padding: 0.5%;
+    text-align: center;
+    width: 20%;
+    height: 30%;
+} */
+
+
+
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+table {
+border-collapse:collapse;
+background-color: var(--darkishBlue);
+margin:1%;
+/*margin-left: auto;    center tables
+-margin-right: auto;*/ 
+}
+
+thead{
+color: var(--white);
+background-color: var(--darkBlue);
+text-align: center;
+border: 1px outset var(--white);
+}
+
+th{
+border: 1px outset var(--white);
+padding: 10px;
+margin: 8%;
+}
+
+tbody{
+text-align: left;
+}
+
+tr{
+border: 1px outset var(--white);
+
+}
+tr td{
+border: 1px outset var(--white);
+background-color: var(--mutedBlue2);
+margin: 8%;
+padding: 10px;
+text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.top{
+    text-align: center;
+}
+
+fieldset {
+color:white;
+margin: 0 auto ;
+width:75%;
+margin-bottom:10px;
+border:none;
+background-color: var(--darkishBlue);
+border-radius: 10px;
+display: grid;
+text-align: center;
+}
+
+
+
+legend {
+color:var(--lightGold);
+font-size;
+background-color: var(--darkRed);
+border:5%;
+}
+
+footer {
+background-color: var(--darkishBlue);
+padding: 15px;
+margin:auto;
+}
+
+form, button, input, select, textarea {
+font-family: 'Ubuntu', sans-serif;
+display:;
+flex-wrap: wrap;
+text-align: center;
+text-align-last: center;
+-moz-text-align-last: center;
+
+}
+
+.bottom fieldset{
+width: 20%;
+padding-bottom:2%;
+text-align: left;
+background-color: #1b2838a1;
+border-right:7px solid #1b2838;
+border-bottom:7px solid #1b2838;
+}
+
+
+button, input[type=submit] {
+padding:15px ;
+border:thin solid var(--darkBlue);
+color:var(--white);
+background-color: var(--mutedBlue);
+text-align: center;
+}
+
+button:hover, input[type=submit]:hover {
+color: white;
+border: thin solid var(--white);
+background-color: var(--mutedBlue)
+}
+
+button:active, input[type=submit]:active {
+background-color: var(--mutedBlue2);
+color: grey;
+}
+
+label {
+color:white;
+display: block;
+margin:0%;
+
+}

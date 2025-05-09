@@ -1,0 +1,143 @@
+<!-- userpayments.hbs
+//     Citation for the following function:
+//     Date: 2/28/2024
+//     Copied from /OR/ Adapted from /OR/ Based on:
+//     Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<div class = "top">
+    <h1>User Payments</h1>
+    <p>Browse User Payments:</p>
+</div>
+<fieldset>
+{{!-- Create a table --}}
+<table id="userpayment-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.userpayment_id}}>
+            <td>{{this.userpayment_id}}</td>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.payment_type}}</td>
+            <td>{{this.provider}}</td>
+            <td>{{this.account_num}}</td>
+            <td>{{this.expiry}}</td>
+            <td><button onclick="deleteUserPayment({{this.userpayment_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_userpayment.js"></script>
+</fieldset>
+<!-- /views/index.hbs -->
+
+{{!-- Form to add a record to the table  --}}
+<fieldset>
+<h2>Add User Payment Data</h2>
+<form id="add-userpayment-form-ajax">
+
+    <label for="input-customer_id">Customer ID: </label>
+        <select name="input-customer_id" id="input-customer_id">
+            <option value="test"> ID </option>
+            {{#each customers}}
+            <option value="{{this.customer_id}}">{{this.customer_id}} ({{this.email}})</option>
+            {{/each}}
+    </select>
+
+    <p><label for="input-payment_type">Payment Type:</label>
+        <select name ="input-payment_type" id="input-payment_type" required>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="PayPal">PayPal</option>
+        </select>  
+    </p>
+
+    <p><label for="input-provider">Provider:</label>
+        <select name ="input-provider" id="input-provider" required>
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+            <option value="Discover">Discover</option>
+            <option value="American Express">American Express</option>
+            <option value="PayPal Inc">PayPal Inc</option>
+        </select>
+    </p>  
+    <p><label for="input-account_num">Account Number:</label> 
+        <input id="input-account_num" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" 
+        maxlength="19" placeholder="0000 0000 0000 0000" required>
+    </p>
+    <p><label for="input-expiry">Expiry:</label>
+        <input type="date" id="input-expiry" name="input-expiry" min="2024-01-01"><br>
+    </p>
+
+    <p><input type="submit"> </p>
+</form>
+</fieldset>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_userpayment.js"></script>
+<fieldset>
+    <h2>Update UserPayment</h2>
+    <form id="update-userpayment-form-ajax">
+
+        <label for="input-userpayment_id-update">UserPayment ID: </label>
+        <select name="input-userpayment_id-update" id="input-userpayment_id-update">
+            <option value="test">ID</option>
+            {{#each data}}
+            <option value="{{this.userpayment_id}}">{{this.userpayment_id}}</option>
+            {{/each}}
+        </select>
+
+        <label for="input-customer_id-update">Customer ID: </label>
+        <select name="input-customer_id-update" id="input-customer_id-update">
+            <option>ID</option>
+            {{#each customers}}
+            <option value="{{this.customer_id}}">{{this.customer_id}} ({{this.email}})</option>
+            {{/each}}
+        </select>
+        
+        <p><label for="input-payment_type-update">Payment Type:</label>
+        <select name ="input-payment_type-update" id="input-payment_type-update" required>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Debit Card">Debit Card</option>
+            <option value="PayPal">PayPal</option>
+        </select>  
+         </p>
+
+        <p><label for="input-provider-update">Provider:</label>
+        <select name ="input-provider-update" id="input-provider-update" required>
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+            <option value="Discover">Discover</option>
+            <option value="American Express">American Express</option>
+            <option value="PayPal Inc">PayPal Inc</option>
+        </select>
+        </p>  
+
+        <p><label for="input-account_num-update">Account Number:</label> 
+        <input id="input-account_num-update" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" 
+        maxlength="19" placeholder="0000 0000 0000 0000" required>
+        </p>
+        <p><label for="input-expiry-update">Expiry:</label>
+            <input type="date" id="input-expiry-update" name="input-expiry" min="2024-01-01"><br>
+        </p>
+        
+        <p><input type="submit"></p>
+
+    </form>
+</fieldset>
+<script src="./js/update_userpayment.js"></script>
